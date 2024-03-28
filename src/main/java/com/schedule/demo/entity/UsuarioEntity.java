@@ -4,6 +4,9 @@ import jakarta.persistence.Entity;
 
 @Entity
 public class UsuarioEntity {
+
+        @Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nome;
 	
