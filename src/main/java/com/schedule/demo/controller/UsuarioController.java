@@ -1,5 +1,6 @@
 package com.schedule.demo.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,9 @@ public class UsuarioController {
 		
 	}
 	
-	
+	@GetMapping
+	public List<UsuarioEntity> findUsers(){
+		return service.findUsers();
+	}
 }
 
