@@ -17,20 +17,24 @@ import com.schedule.demo.service.UsuarioService;
 @RestController
 @RequestMapping("/user")
 public class UsuarioController {
-	
+
 	@Autowired
 	private UsuarioService service;
-	
+
 	@GetMapping("{id}")
 	public Optional<UsuarioEntity> getUser(@PathVariable Long id) {
 		return service.getUser(id);
 	}
-	
-	
+
 	@PostMapping("/create")
 	public UsuarioEntity createUser(@RequestBody UsuarioEntity user) {
 		return service.createUser(user);
-		
-  }
-}
 
+	}
+
+	@GetMapping
+	public List<UsuarioEntity> listUser() {
+		return service.findUsers();
+	}
+
+}
