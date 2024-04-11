@@ -12,8 +12,7 @@ public class UsuarioEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nome;
-	
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -26,8 +25,4 @@ public class UsuarioEntity {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	
-	
-	
-	
 }

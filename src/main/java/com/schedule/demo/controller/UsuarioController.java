@@ -31,11 +31,6 @@ public class UsuarioController {
 	public UsuarioEntity createUser(@RequestBody UsuarioEntity user) {
 		return service.createUser(user);
 		
-	}
-	
-	@GetMapping
-	public List<UsuarioEntity> findUsers(){
-		return service.findUsers();
-	}
+  }
 }
 
