@@ -7,13 +7,12 @@ import jakarta.persistence.Id;
 
 @Entity
 public class UsuarioEntity {
-
-        @Id
+	
+	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nome;
-	
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -26,8 +25,4 @@ public class UsuarioEntity {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	
-	
-	
-	
 }
