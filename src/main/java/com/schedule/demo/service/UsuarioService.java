@@ -33,5 +33,27 @@ public class UsuarioService {
 	public List<UsuarioEntity> findUsers() {
 		return repository.findAll();
 	}
-
+	
+	//Atualizar usuario PUT (Preciso consertar)
+	public UsuarioEntity updateUser(Long id, UsuarioEntity user) {
+		
+		Optional<UsuarioEntity> usuario = repository.findById(id);
+		if(usuario.isPresent()) {
+			UsuarioEntity usuarioModif = usuario.get();
+			usuarioModif.setNome(user.getNome());
+			
+			repository.save(usuarioModif);
+			return usuarioModif;
+		}else {
+			System.out.println("Usuario não encontrado");
+			return null;
+		}
+	}
+	
+	//Deleta usuario
+	public List<UsuarioEntity> deleteUser(Long id){
+		 repository.deleteById(id);
+		 return findUsers();
+	}
+	
 }
