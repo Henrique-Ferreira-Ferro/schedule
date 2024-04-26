@@ -20,6 +20,9 @@ public class UsuarioService {
 
 	}
 
+	// git merge origin main (puxar codigos da main) - Colocar no Obsidin para
+	// estudar
+
 	// Optional usado para validações
 	/*
 	 * Evita exceções de ponteiro nulo. Torna o código mais claro, legível e livre
@@ -33,27 +36,50 @@ public class UsuarioService {
 	public List<UsuarioEntity> findUsers() {
 		return repository.findAll();
 	}
+
 	
-	//Atualizar usuario PUT (Preciso consertar)
 	public UsuarioEntity updateUser(Long id, UsuarioEntity user) {
-		
+
 		Optional<UsuarioEntity> usuario = repository.findById(id);
-		if(usuario.isPresent()) {
+		return logicUpdateUser(user, usuario);
+	}
+
+	// Deleta usuario
+	public String deleteUser(Long id) {
+		Optional<UsuarioEntity> usuario = repository.findById(id);
+		return logicDeleteUser(id, usuario);
+
+	}
+
+	/*---------------------------------------------------------------------------------------------*/
+	//Logica do Service!
+	
+	
+	
+	//Update User
+	private UsuarioEntity logicUpdateUser(UsuarioEntity user, Optional<UsuarioEntity> usuario) {
+		if (usuario.isPresent()) {
 			UsuarioEntity usuarioModif = usuario.get();
 			usuarioModif.setNome(user.getNome());
-			
+
 			repository.save(usuarioModif);
 			return usuarioModif;
-		}else {
-			System.out.println("Usuario não encontrado");
-			return null;
+		} else {
+			throw new RuntimeException("Usuario não encontrado");
 		}
 	}
 	
-	//Deleta usuario
-	public List<UsuarioEntity> deleteUser(Long id){
-		 repository.deleteById(id);
-		 return findUsers();
+	
+	//Delete user
+	private String logicDeleteUser(Long id, Optional<UsuarioEntity> usuario) {
+		if (usuario.isPresent()) {
+			UsuarioEntity user = usuario.get();
+			repository.deleteById(id);
+			return "Usuario " + user.getNome() + " deletado com sucesso!!!";
+		} else {
+			return "Usuario não encontrado!";
+		}
 	}
 	
+
 }
