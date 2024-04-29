@@ -524,3 +524,6 @@ Caused by: org.h2.mvstore.MVStoreException: The file is locked: C:/Users/henri/O
 	at org.h2.mvstore.SingleFileStore.open(SingleFileStore.java:81)
 	at org.h2.mvstore.MVStore.<init>(MVStore.java:286)
 	... 59 more
+2024-04-29 19:05:37.834964-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PAUTAENTITY" not found; SQL statement:
+SELECT * FROM pautaEntity [42102-224]
