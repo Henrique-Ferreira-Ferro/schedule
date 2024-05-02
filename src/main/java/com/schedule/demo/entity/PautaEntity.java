@@ -15,24 +15,28 @@ public class PautaEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Long id;
 	@Size(min = 5, max = 300)
 	private String descricao;
-	@DateTimeFormat(pattern =  "dd/MM/yyyy")
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date prazo;
 	
 	public PautaEntity(){
 		
 	}
 	
-	public PautaEntity(int id, String descricao, Date prazo) {
+	public PautaEntity(Long id, String descricao, Date prazo) {
 		this.id = id;
 		this.descricao = descricao;
 		this.prazo = prazo;
 	}
 	
-	public int getId() {
+	public Long getId() {
 		return this.id;
+	}
+	
+	public void setId(Long id) {
+		this.id = id;
 	}
 	
 	public String getDescricao() {
