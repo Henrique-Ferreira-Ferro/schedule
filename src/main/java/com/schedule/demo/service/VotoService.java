@@ -1,5 +1,7 @@
 package com.schedule.demo.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,5 +19,8 @@ public class VotoService {
 		return repository.save(voto);
 	}
 	
+	public Optional<VotoEntity> findVotoById(Long id){
+		return repository.findById(id);
+	}
 	
 }
