@@ -40,14 +40,14 @@ public class UsuarioService {
 	
 	public UsuarioEntity updateUser(Long id, UsuarioEntity user) {
 
-		Optional<UsuarioEntity> usuario = repository.findById(id);
-		return logicUpdateUser(user, usuario);
+		var usuario = repository.findById(id);
+		return updateUserById(user, usuario);
 	}
 
 	// Deleta usuario
 	public String deleteUser(Long id) {
-		Optional<UsuarioEntity> usuario = repository.findById(id);
-		return logicDeleteUser(id, usuario);
+		var usuario = repository.findById(id);
+		return deleteUserById(id, usuario);
 
 	}
 
@@ -57,9 +57,9 @@ public class UsuarioService {
 	
 	
 	//Update User
-	private UsuarioEntity logicUpdateUser(UsuarioEntity user, Optional<UsuarioEntity> usuario) {
+	private UsuarioEntity updateUserById(UsuarioEntity user, Optional<UsuarioEntity> usuario) {
 		if (usuario.isPresent()) {
-			UsuarioEntity usuarioModif = usuario.get();
+			var usuarioModif = usuario.get();
 			usuarioModif.setNome(user.getNome());
 
 			repository.save(usuarioModif);
@@ -71,9 +71,9 @@ public class UsuarioService {
 	
 	
 	//Delete user
-	private String logicDeleteUser(Long id, Optional<UsuarioEntity> usuario) {
+	private String deleteUserById(Long id, Optional<UsuarioEntity> usuario) {
 		if (usuario.isPresent()) {
-			UsuarioEntity user = usuario.get();
+			var user = usuario.get();
 			repository.deleteById(id);
 			return "Usuario " + user.getNome() + " deletado com sucesso!!!";
 		} else {
