@@ -23,7 +23,7 @@ public class UsuarioController {
 	@Autowired
 	private UsuarioService service;
 
-	@GetMapping("{id}")
+	@GetMapping("/{id}")
 	public Optional<UsuarioEntity> getUser(@PathVariable Long id) {
 		return service.getUser(id);
 	}
@@ -35,18 +35,17 @@ public class UsuarioController {
 	}
 
 	@GetMapping
-	public List<UsuarioEntity> listUser() {
+	public List<UsuarioEntity> listUsers() {
 		return service.findUsers();
 	}
 	
-	//Preciso consertar
 	@PutMapping("/update/{id}")
 	public UsuarioEntity updateUser(@PathVariable Long id, @RequestBody UsuarioEntity user) {
 		return service.updateUser(id,user);
 	}
 	
-	@DeleteMapping("{id}")
-	public List<UsuarioEntity> deleteUser(@PathVariable Long id){
+	@DeleteMapping("/{id}")
+	public String deleteUser(@PathVariable Long id){
 		return service.deleteUser(id);
 	}
 	
