@@ -32,7 +32,7 @@ public class VotoController {
 		return service.findVotoById(id);
 	}
 	
-	@GetMapping("/{id}")
+	@GetMapping("result/{id}")
 	public ResultadoVotacaoDTO resultVotacao(@PathVariable Long id) {
 		return null;
 	}
