@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.schedule.demo.dto.ResultadoVotacaoDTO;
 import com.schedule.demo.entity.VotoEntity;
 import com.schedule.demo.service.VotoService;
 
@@ -29,6 +30,11 @@ public class VotoController {
 	@GetMapping("/{id}")
 	public Optional<VotoEntity> findVotoById(@PathVariable Long id){
 		return service.findVotoById(id);
+	}
+	
+	@GetMapping("result/{id}")
+	public ResultadoVotacaoDTO resultVotacao(@PathVariable Long id) {
+		return null;
 	}
 	
 }
