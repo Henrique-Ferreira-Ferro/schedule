@@ -33,7 +33,11 @@ public class VoteController {
 	}
 	
 	@GetMapping("result/{id}")
+<<<<<<< HEAD:src/main/java/com/schedule/demo/controller/VoteController.java
 	public VotingResultDTO resultVoting(@PathVariable Long id) {
+=======
+	public ResultadoVotacaoDTO resultVotacao(@PathVariable Long id) {
+>>>>>>> develop:src/main/java/com/schedule/demo/controller/VotoController.java
 		return null;
 	}
 	
