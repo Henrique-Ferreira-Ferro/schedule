@@ -13,34 +13,34 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.schedule.demo.entity.UsuarioEntity;
-import com.schedule.demo.service.UsuarioService;
+import com.schedule.demo.entity.UserEntity;
+import com.schedule.demo.service.UserService;
 
 @RestController
 @RequestMapping("/user")
-public class UsuarioController {
+public class UserController {
 
 	@Autowired
-	private UsuarioService service;
+	private UserService service;
 
 	@GetMapping("/{id}")
-	public Optional<UsuarioEntity> getUser(@PathVariable Long id) {
+	public Optional<UserEntity> getUser(@PathVariable Long id) {
 		return service.getUser(id);
 	}
 
 	@PostMapping("/create")
-	public UsuarioEntity createUser(@RequestBody UsuarioEntity user) {
+	public UserEntity createUser(@RequestBody UserEntity user) {
 		return service.createUser(user);
 
 	}
 
 	@GetMapping
-	public List<UsuarioEntity> listUsers() {
+	public List<UserEntity> listUsers() {
 		return service.findUsers();
 	}
 	
 	@PutMapping("/update/{id}")
-	public UsuarioEntity updateUser(@PathVariable Long id, @RequestBody UsuarioEntity user) {
+	public UserEntity updateUser(@PathVariable Long id, @RequestBody UserEntity user) {
 		return service.updateUser(id,user);
 	}
 	

@@ -5,26 +5,26 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.schedule.demo.dto.ResultadoVotacaoDTO;
-import com.schedule.demo.entity.VotoEntity;
+import com.schedule.demo.dto.VotingResultDTO;
+import com.schedule.demo.entity.VoteEntity;
 import com.schedule.demo.repository.VotoRepository;
 
 @Service
-public class VotoService {
+public class VoteService {
 	
 	@Autowired
 	private VotoRepository repository;
 	
 	
-	public VotoEntity createVoto(VotoEntity voto) {
+	public VoteEntity createVote(VoteEntity voto) {
 		return repository.save(voto);
 	}
 	
-	public Optional<VotoEntity> findVotoById(Long id){
+	public Optional<VoteEntity> findVoteById(Long id){
 		return repository.findById(id);
 	}
 	
-	public ResultadoVotacaoDTO resultVotacao(Long id) {
+	public VotingResultDTO resultVotacao(Long id) {
 		// Logica precisa ser implementada
 		return null;
 	}
