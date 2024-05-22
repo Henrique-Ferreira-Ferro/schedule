@@ -10,31 +10,26 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.schedule.demo.dto.ResultadoVotacaoDTO;
-import com.schedule.demo.entity.VotoEntity;
-import com.schedule.demo.service.VotoService;
+import com.schedule.demo.entity.ScheduleEntity;
+import com.schedule.demo.service.ScheduleService;
 
 @RestController
-@RequestMapping("/voto")
-public class VotoController {
+@RequestMapping("/schedule")
+public class ScheduleController {
 	
 	@Autowired
-	private VotoService service;
+	private ScheduleService service;
+	
 	
 	@PostMapping("/create")
-	public VotoEntity createVoto(@RequestBody VotoEntity voto) {
-		return service.createVoto(voto);
+	public ScheduleEntity createSchedule(@RequestBody ScheduleEntity pauta) {
+		return service.createSchedule(pauta);
 	}
-	
 	
 	@GetMapping("/{id}")
-	public Optional<VotoEntity> findVotoById(@PathVariable Long id){
-		return service.findVotoById(id);
+	public Optional<ScheduleEntity> findScheduleById(@PathVariable Long id){
+		return service.findScheduleById(id);
 	}
 	
-	@GetMapping("result/{id}")
-	public ResultadoVotacaoDTO resultVotacao(@PathVariable Long id) {
-		return null;
-	}
 	
 }

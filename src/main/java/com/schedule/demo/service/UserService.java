@@ -6,16 +6,16 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.schedule.demo.entity.UsuarioEntity;
+import com.schedule.demo.entity.UserEntity;
 import com.schedule.demo.repository.UsuarioRepository;
 
 @Service
-public class UsuarioService {
+public class UserService {
 
 	@Autowired
 	private UsuarioRepository repository;
 
-	public UsuarioEntity createUser(UsuarioEntity user) {
+	public UserEntity createUser(UserEntity user) {
 		return repository.save(user);
 
 	}
@@ -28,17 +28,17 @@ public class UsuarioService {
 	 * Evita exceções de ponteiro nulo. Torna o código mais claro, legível e livre
 	 * de erros. É uma alternativa moderna ao uso excessivo de exceções.
 	 */
-	public Optional<UsuarioEntity> getUser(Long id) {
+	public Optional<UserEntity> getUser(Long id) {
 		return repository.findById(id);
 	}
 
 	// Criar funcionalidade para listar todos usuários.
-	public List<UsuarioEntity> findUsers() {
+	public List<UserEntity> findUsers() {
 		return repository.findAll();
 	}
 
 	
-	public UsuarioEntity updateUser(Long id, UsuarioEntity user) {
+	public UserEntity updateUser(Long id, UserEntity user) {
 
 		var usuario = repository.findById(id);
 		return updateUserById(user, usuario);
@@ -57,10 +57,10 @@ public class UsuarioService {
 	
 	
 	//Update User
-	private UsuarioEntity updateUserById(UsuarioEntity user, Optional<UsuarioEntity> usuario) {
+	private UserEntity updateUserById(UserEntity user, Optional<UserEntity> usuario) {
 		if (usuario.isPresent()) {
 			var usuarioModif = usuario.get();
-			usuarioModif.setNome(user.getNome());
+			usuarioModif.setName(user.getName());
 
 			repository.save(usuarioModif);
 			return usuarioModif;
@@ -71,11 +71,11 @@ public class UsuarioService {
 	
 	
 	//Delete user
-	private String deleteUserById(Long id, Optional<UsuarioEntity> usuario) {
+	private String deleteUserById(Long id, Optional<UserEntity> usuario) {
 		if (usuario.isPresent()) {
 			var user = usuario.get();
 			repository.deleteById(id);
-			return "Usuario " + user.getNome() + " deletado com sucesso!!!";
+			return "Usuario " + user.getName() + " deletado com sucesso!!!";
 		} else {
 			return "Usuario não encontrado!";
 		}
