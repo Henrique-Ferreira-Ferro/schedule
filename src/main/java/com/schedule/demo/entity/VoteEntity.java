@@ -6,25 +6,25 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
-public class VotoEntity {
+public class VoteEntity {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private boolean vote;
-	private Long idPauta;
-	private Long idUsuario;
+	private Long idShedule;
+	private Long idUser;
 	
-	public VotoEntity() {
+	public VoteEntity() {
 		
 	}
 
-	public VotoEntity(Long id, boolean vote, Long idPauta, Long idUsuario) {
+	public VoteEntity(Long id, boolean vote, Long idPauta, Long idUsuario) {
 		super();
 		this.id = id;
 		this.vote = vote;
-		this.idPauta = idPauta;
-		this.idUsuario = idUsuario;
+		this.idShedule = idPauta;
+		this.idUser = idUsuario;
 	}
 
 	public Long getId() {
@@ -43,20 +43,20 @@ public class VotoEntity {
 		this.vote = vote;
 	}
 
-	public Long getIdPauta() {
-		return idPauta;
+	public Long getIdShedule() {
+		return idShedule;
 	}
 
-	public void setIdPauta(Long idPauta) {
-		this.idPauta = idPauta;
+	public void setIdShedule(Long idPauta) {
+		this.idShedule = idPauta;
 	}
 
-	public Long getIdUsuario() {
-		return idUsuario;
+	public Long getIdUser() {
+		return idUser;
 	}
 
-	public void setIdUsuario(Long idUsuario) {
-		this.idUsuario = idUsuario;
+	public void setIdUser(Long idUsuario) {
+		this.idUser = idUsuario;
 	}
 	
 	

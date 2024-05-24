@@ -11,24 +11,24 @@ import jakarta.persistence.Id;
 import jakarta.validation.constraints.Size;
 
 @Entity
-public class PautaEntity {
+public class ScheduleEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	@Size(min = 5, max = 300)
-	private String descricao;
+	private String description;
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
-	private Date prazo;
+	private Date term;
 	
-	public PautaEntity(){
+	public ScheduleEntity(){
 		
 	}
 	
-	public PautaEntity(Long id, String descricao, Date prazo) {
+	public ScheduleEntity(Long id, String descricao, Date prazo) {
 		this.id = id;
-		this.descricao = descricao;
-		this.prazo = prazo;
+		this.description = descricao;
+		this.term = prazo;
 	}
 	
 	public Long getId() {
@@ -39,20 +39,20 @@ public class PautaEntity {
 		this.id = id;
 	}
 	
-	public String getDescricao() {
-		return this.descricao;
+	public String getDescription() {
+		return this.description;
 	}
 	
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
+	public void setDescription(String descricao) {
+		this.description = descricao;
 	}
 	
-	public Date getPrazo() {
-		return this.prazo;
+	public Date getTerm() {
+		return this.term;
 	}
 	
-	public void setPrazo(Date prazo) {
-		this.prazo = prazo;
+	public void setTerm(Date prazo) {
+		this.term = prazo;
 	}
 	
 }
