@@ -15,6 +15,10 @@ public class VoteService {
 	@Autowired
 	private VoteRepository repository;
 	
+	private VoteEntity vote ;
+	
+	
+	
 	
 	public VoteEntity createVote(VoteEntity voto) {
 		return repository.save(voto);
@@ -24,8 +28,12 @@ public class VoteService {
 		return repository.findById(id);
 	}
 	
-	public VotingResultDTO resultVotacao(Long id) {
+	public VotingResultDTO resultVotacao(Long idUser, Long idSchedule) {
 		// Logica precisa ser implementada
+		repository.findByIdUserAndIdPauta(vote.getIdUser(), vote.getIdShedule());
+		
+		
+		
 		return null;
 	}
 	
