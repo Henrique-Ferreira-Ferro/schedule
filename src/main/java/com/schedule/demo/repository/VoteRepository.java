@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.schedule.demo.entity.VoteEntity;
 
-public interface VotoRepository extends JpaRepository<VoteEntity, Long>{
+public interface VoteRepository extends JpaRepository<VoteEntity, Long>{
 
 }

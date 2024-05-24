@@ -7,13 +7,13 @@ import org.springframework.stereotype.Service;
 
 import com.schedule.demo.dto.VotingResultDTO;
 import com.schedule.demo.entity.VoteEntity;
-import com.schedule.demo.repository.VotoRepository;
+import com.schedule.demo.repository.VoteRepository;
 
 @Service
 public class VoteService {
 	
 	@Autowired
-	private VotoRepository repository;
+	private VoteRepository repository;
 	
 	
 	public VoteEntity createVote(VoteEntity voto) {

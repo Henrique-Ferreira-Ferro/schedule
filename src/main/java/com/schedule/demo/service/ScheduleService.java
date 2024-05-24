@@ -6,13 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.schedule.demo.entity.ScheduleEntity;
-import com.schedule.demo.repository.PautaRepository;
+import com.schedule.demo.repository.ScheduleRepository;
 
 @Service
 public class ScheduleService {
 	
 	@Autowired
-	private PautaRepository repository;
+	private ScheduleRepository repository;
 	
 	
 	public ScheduleEntity createSchedule(ScheduleEntity pauta) {
