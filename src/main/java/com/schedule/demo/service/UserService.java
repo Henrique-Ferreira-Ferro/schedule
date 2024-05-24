@@ -7,13 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.schedule.demo.entity.UserEntity;
-import com.schedule.demo.repository.UsuarioRepository;
+import com.schedule.demo.repository.UserRepository;
 
 @Service
 public class UserService {
 
 	@Autowired
-	private UsuarioRepository repository;
+	private UserRepository repository;
 
 	public UserEntity createUser(UserEntity user) {
 		return repository.save(user);
