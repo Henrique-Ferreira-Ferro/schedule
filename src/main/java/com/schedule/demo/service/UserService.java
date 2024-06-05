@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.schedule.demo.entity.UserEntity;
+import com.schedule.demo.exceptions.BadRequestException;
 import com.schedule.demo.repository.UserRepository;
 
 @Service
@@ -16,7 +17,11 @@ public class UserService {
 	private UserRepository repository;
 
 	public UserEntity createUser(UserEntity user) {
-		return repository.save(user);
+		if (user.getName().isEmpty()) {
+			throw new BadRequestException("Passe um usuario :(");
+		} else {
+			return repository.save(user);
+		}
 
 	}
 
@@ -37,7 +42,6 @@ public class UserService {
 		return repository.findAll();
 	}
 
-	
 	public UserEntity updateUser(Long id, UserEntity user) {
 
 		var usuario = repository.findById(id);
@@ -52,11 +56,9 @@ public class UserService {
 	}
 
 	/*---------------------------------------------------------------------------------------------*/
-	//Logica do Service!
-	
-	
-	
-	//Update User
+	// Logica do Service!
+
+	// Update User
 	private UserEntity updateUserById(UserEntity user, Optional<UserEntity> usuario) {
 		if (usuario.isPresent()) {
 			var usuarioModif = usuario.get();
@@ -68,9 +70,8 @@ public class UserService {
 			throw new RuntimeException("Usuario não encontrado");
 		}
 	}
-	
-	
-	//Delete user
+
+	// Delete user
 	private String deleteUserById(Long id, Optional<UserEntity> usuario) {
 		if (usuario.isPresent()) {
 			var user = usuario.get();
@@ -80,6 +81,5 @@ public class UserService {
 			return "Usuario não encontrado!";
 		}
 	}
-	
 
 }
