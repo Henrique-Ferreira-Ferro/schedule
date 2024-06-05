@@ -12,19 +12,11 @@ public class VoteEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private boolean vote;
-	private Long idShedule;
+	private Long idSchedule;
 	private Long idUser;
 	
 	public VoteEntity() {
 		
-	}
-
-	public VoteEntity(Long id, boolean vote, Long idPauta, Long idUsuario) {
-		super();
-		this.id = id;
-		this.vote = vote;
-		this.idShedule = idPauta;
-		this.idUser = idUsuario;
 	}
 
 	public Long getId() {
@@ -43,21 +35,23 @@ public class VoteEntity {
 		this.vote = vote;
 	}
 
-	public Long getIdShedule() {
-		return idShedule;
+	public Long getIdSchedule() {
+		return idSchedule;
 	}
 
-	public void setIdShedule(Long idPauta) {
-		this.idShedule = idPauta;
+	public void setIdSchedule(Long idSchedule) {
+		this.idSchedule = idSchedule;
 	}
 
 	public Long getIdUser() {
 		return idUser;
 	}
 
-	public void setIdUser(Long idUsuario) {
-		this.idUser = idUsuario;
+	public void setIdUser(Long idUser) {
+		this.idUser = idUser;
 	}
+
+	
 	
 	
 	
