@@ -2,6 +2,12 @@ package com.schedule.demo.dto;
 
 public class VotingResultDTO {
 	
+	// DTO dta transfer object
+	// Responsavel por fazer mapeamento de entrada e saida
+	// Ajuda a montar os objetos
+	//Se comunica com o front e pede so o que queremos, assim como a saida
+	
+	
 	private Long idSchedule;
 	private int yes;
 	private int no;

@@ -3,6 +3,8 @@ package com.schedule.demo.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.apache.catalina.User;
+import org.hibernate.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -67,7 +69,7 @@ public class UserService {
 			repository.save(usuarioModif);
 			return usuarioModif;
 		} else {
-			throw new RuntimeException("Usuario não encontrado");
+			throw new ObjectNotFoundException(user.getId(),User.class.getSimpleName());
 		}
 	}
 
@@ -78,7 +80,7 @@ public class UserService {
 			repository.deleteById(id);
 			return "Usuario " + user.getName() + " deletado com sucesso!!!";
 		} else {
-			return "Usuario não encontrado!";
+			throw new ObjectNotFoundException(id, User.class.getSimpleName());
 		}
 	}
 
