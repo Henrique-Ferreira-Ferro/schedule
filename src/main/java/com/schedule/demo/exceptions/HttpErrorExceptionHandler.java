@@ -2,11 +2,11 @@ package com.schedule.demo.exceptions;
 
 import java.time.LocalDateTime;
 
+import org.hibernate.ObjectNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.client.HttpClientErrorException.BadRequest;
 
 @ControllerAdvice
 public class HttpErrorExceptionHandler {
@@ -29,6 +29,10 @@ public class HttpErrorExceptionHandler {
 		return buildErrorResponse(HttpStatus.BAD_REQUEST, exception.getMessage());
 	}
 	
+	@ExceptionHandler(ObjectNotFoundException.class)
+	public ResponseEntity<ApiError> notFound(ObjectNotFoundException exception){	
+		return buildErrorResponse(HttpStatus.NOT_FOUND, "Não foi possivel encontrar "+ exception.getEntityName());
+	}
 	
 	
 }
