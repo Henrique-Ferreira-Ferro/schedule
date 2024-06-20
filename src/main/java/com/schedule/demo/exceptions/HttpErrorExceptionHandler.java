@@ -34,5 +34,10 @@ public class HttpErrorExceptionHandler {
 		return buildErrorResponse(HttpStatus.NOT_FOUND, "Não foi possivel encontrar "+ exception.getEntityName());
 	}
 	
+	@ExceptionHandler(ForbiddenException.class)
+	public ResponseEntity<ApiError> Forbidden(ForbiddenException exception){
+		return buildErrorResponse(HttpStatus.FORBIDDEN, "Não há permissão para essa pagina: "+ exception.getMessage());
+	}
+	
 	
 }
