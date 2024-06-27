@@ -30,7 +30,7 @@ public class VoteEntity {
 	public boolean isVote() {
 		return vote;
 	}
-
+	
 	public void setVote(boolean vote) {
 		this.vote = vote;
 	}

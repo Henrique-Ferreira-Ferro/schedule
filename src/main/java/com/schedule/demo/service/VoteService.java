@@ -1,14 +1,17 @@
 package com.schedule.demo.service;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
+import org.hibernate.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.schedule.demo.dto.VotingResultDTO;
 import com.schedule.demo.entity.ScheduleEntity;
 import com.schedule.demo.entity.VoteEntity;
+import com.schedule.demo.exceptions.ForbiddenException;
 import com.schedule.demo.repository.ScheduleRepository;
 import com.schedule.demo.repository.UserRepository;
 import com.schedule.demo.repository.VoteRepository;
@@ -48,22 +51,49 @@ public class VoteService {
 					return voteRepository.save(voto);
 
 				}
-				throw new RuntimeException("A pauta está fechada!");
+				throw new ForbiddenException("A pauta está fechada!");
 
 			}
-			throw new RuntimeException("Você não pode votar novamente :D");
+			throw new ForbiddenException("Você não pode votar novamente :D");
 		}
 
-		return voteRepository.save(voto);
+		throw new ObjectNotFoundException(shedu.get().getId(), ScheduleEntity.class.getSimpleName());
 	}
 
 	public Optional<VoteEntity> findVoteById(Long id) {
 		return voteRepository.findById(id);
 	}
 
-	public VotingResultDTO resultVotacao(Long idUser, Long idSchedule) {
+	public VotingResultDTO resultVotacao(Long idSchedule) {
 
-		return null;
+		Date date = new Date();
+
+		Optional<ScheduleEntity> shedu = scheduRepository.findById(idSchedule);
+
+		List<VoteEntity> voteList = voteRepository.findByIdSchedule(idSchedule);
+
+		if (date.before(shedu.get().getTerm())) {
+			throw new ForbiddenException("Votação em andamento!");
+		}
+
+		var yes = 0;
+		var no = 0;
+		String resultado = "Resultado";
+
+		for (int i = 0; i < voteList.size(); i++) {
+			if (voteList.get(i).isVote()) {
+				yes++;
+			} else {
+				no++;
+			}
+		}
+		if (yes > no) {
+			resultado = "Pauta aprovada!";
+		} else {
+			resultado = "Pauta reprovada!";
+		}
+		
+		return new VotingResultDTO(idSchedule,yes,no,resultado);
 	}
 
 }
