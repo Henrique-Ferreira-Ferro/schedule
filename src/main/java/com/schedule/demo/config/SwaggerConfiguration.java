@@ -12,12 +12,9 @@ public class SwaggerConfiguration {
 
 	@Bean
 	public OpenAPI customOpenAPI() {
-		return new OpenAPI()
-				.components(new Components())
-				.info(new Info().title("Api Schedule").description("É uma pauta de votação :)"));
-				
-		
+		return new OpenAPI().components(new Components())
+				.info(new Info().title("Swagger").description("Documentação do Schedule"));
 	}
-	
+
 	
 }
