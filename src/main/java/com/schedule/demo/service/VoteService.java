@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.schedule.demo.dto.VotingResultDTO;
 import com.schedule.demo.entity.ScheduleEntity;
 import com.schedule.demo.entity.VoteEntity;
+import com.schedule.demo.exceptions.BadRequestException;
 import com.schedule.demo.exceptions.ForbiddenException;
 import com.schedule.demo.repository.ScheduleRepository;
 import com.schedule.demo.repository.UserRepository;
@@ -37,11 +38,6 @@ public class VoteService {
 
 			VoteEntity vote = voteRepository.findByIdUserAndIdSchedule(voto.getIdUser(), voto.getIdSchedule());
 
-			/*
-			 * Se o voto não existir, vamos deixar o usuario votar para conseguir votar,
-			 * pauta dentro do prazo
-			 */
-
 			// Não esta no banco
 
 			if (vote == null) {
@@ -61,6 +57,10 @@ public class VoteService {
 	}
 
 	public Optional<VoteEntity> findVoteById(Long id) {
+		Optional<VoteEntity> vote = voteRepository.findById(id);
+		if(!vote.isPresent()) {
+			throw new BadRequestException("Não foi possivel encontrar o voto realizado");
+		}
 		return voteRepository.findById(id);
 	}
 
