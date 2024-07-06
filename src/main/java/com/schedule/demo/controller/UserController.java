@@ -32,12 +32,12 @@ public class UserController {
 	@Autowired
 	private UserService service;
 	
-	@Operation(summary = "Usuario encontrado", description = "Busca usuario por id")
+	@Operation(summary = "Busca de usuario por id", description = "Essa funcionalidade busca os usuarios pelo seu id")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "200", description = "Usuario encontrado",
 				content = @Content(mediaType = "application/json",
 				schema = @Schema(implementation = UserEntity.class))),
-				@ApiResponse(responseCode = "400",description="Insira um numero!")
+				@ApiResponse(responseCode = "400",description="Não foi possivel encontrar")
 	})
 	@GetMapping("/{id}")
 	public Optional<UserEntity> getUser(@Parameter(description = "id do usuario", required = true) @PathVariable Long id) {
@@ -67,12 +67,25 @@ public class UserController {
 	public List<UserEntity> listUsers() {
 		return service.findUsers();
 	}
-
+	
+	@Operation(summary = "Atualizar usuario", description = "Essa funcionalidade atualiza usuarios atraves do ID")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Usuario atualizado com sucesso",
+					content = @Content(mediaType = "application/json",
+					schema = @Schema(implementation = UserEntity.class)
+				)
+			),
+			@ApiResponse(responseCode = "400", description = "Usuario não encontrado")
+	})
 	@PutMapping("/update/{id}")
 	public UserEntity updateUser(@PathVariable Long id, @RequestBody UserEntity user) {
 		return service.updateUser(id, user);
 	}
-
+	
+	@Operation(summary = "Deletar usuario", description = "Essa funcionalidade deleta um usuario atraves do ID")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Usuario deletado com sucesso")
+	})
 	@DeleteMapping("/{id}")
 	public String deleteUser(@PathVariable Long id) {
 		return service.deleteUser(id);
