@@ -2,6 +2,7 @@ package com.schedule.demo.service;
 
 import java.util.Optional;
 
+import org.hibernate.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +25,13 @@ public class ScheduleService {
 	}
 	
 	public Optional<ScheduleEntity> findScheduleById(Long id) {
-		return repository.findById(id);
+		Optional<ScheduleEntity> schedu = repository.findById(id);
+		if(schedu.isPresent()) {
+			return repository.findById(id);
+		}else {
+			throw new ObjectNotFoundException(id, ScheduleEntity.class.getName());
+		}
+		
 	}
 	
 	

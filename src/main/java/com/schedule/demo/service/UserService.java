@@ -36,7 +36,12 @@ public class UserService {
 	 * de erros. É uma alternativa moderna ao uso excessivo de exceções.
 	 */
 	public Optional<UserEntity> getUser(Long id) {
-		return repository.findById(id);
+		Optional<UserEntity> userFind = repository.findById(id);
+		if (userFind.isPresent()) {
+			return repository.findById(id);
+		} else {
+			throw new ObjectNotFoundException(id, UserEntity.class.getName());
+		}
 	}
 
 	// Criar funcionalidade para listar todos usuários.
@@ -62,26 +67,24 @@ public class UserService {
 
 	// Update User
 	private UserEntity updateUserById(UserEntity user, Optional<UserEntity> usuario) {
-		if (usuario.isPresent()) {
-			var usuarioModif = usuario.get();
-			usuarioModif.setName(user.getName());
-
-			repository.save(usuarioModif);
-			return usuarioModif;
-		} else {
-			throw new ObjectNotFoundException(user.getId(),User.class.getSimpleName());
+		//Reestruturação do codigo
+		if (!usuario.isPresent()) {
+			throw new ObjectNotFoundException(user.getId(), User.class.getSimpleName());
 		}
+		var usuarioModif = usuario.get();
+		usuarioModif.setName(user.getName());
+		repository.save(usuarioModif);
+		return usuarioModif;
 	}
 
 	// Delete user
 	private String deleteUserById(Long id, Optional<UserEntity> usuario) {
-		if (usuario.isPresent()) {
-			var user = usuario.get();
-			repository.deleteById(id);
-			return "Usuario " + user.getName() + " deletado com sucesso!!!";
-		} else {
+		if (!usuario.isPresent()) {
 			throw new ObjectNotFoundException(id, User.class.getSimpleName());
-		}
+		} 
+		var user = usuario.get();
+		repository.deleteById(id);
+		return "Usuario " + user.getName() + " deletado com sucesso!!!";
 	}
 
 }
