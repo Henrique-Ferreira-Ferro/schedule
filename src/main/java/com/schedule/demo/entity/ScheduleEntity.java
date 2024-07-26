@@ -1,6 +1,6 @@
 package com.schedule.demo.entity;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -19,13 +19,13 @@ public class ScheduleEntity {
 	@Size(min = 5, max = 300)
 	private String description;
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
-	private Date term;
+	private LocalDateTime term;
 	
 	public ScheduleEntity(){
 		
 	}
 	
-	public ScheduleEntity(Long id, String descricao, Date prazo) {
+	public ScheduleEntity(Long id, String descricao, LocalDateTime prazo) {
 		this.id = id;
 		this.description = descricao;
 		this.term = prazo;
@@ -47,11 +47,11 @@ public class ScheduleEntity {
 		this.description = descricao;
 	}
 	
-	public Date getTerm() {
+	public LocalDateTime getTerm() {
 		return this.term;
 	}
 	
-	public void setTerm(Date prazo) {
+	public void setTerm(LocalDateTime prazo) {
 		this.term = prazo;
 	}
 	

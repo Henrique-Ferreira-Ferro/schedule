@@ -1,5 +1,7 @@
 package com.schedule.demo.service;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Optional;
@@ -43,7 +45,7 @@ public class ScheduleService {
 		
 		var scheduResponse = repository.findById(schedule.getId());
 		
-		var date = new Date();
+		LocalDateTime date = LocalDateTime.now();
 		
 		if(scheduResponse.isPresent()) {
 			if(scheduResponse.get().getTerm() == null) {
@@ -51,10 +53,7 @@ public class ScheduleService {
 					scheduResponse.get().setTerm(schedule.getTerm());
 					return repository.saveAndFlush(scheduResponse.get());
 				}else {
-					var calendar = Calendar.getInstance();
-					calendar.setTime(date);
-					calendar.add(Calendar.MINUTE, 1);
-					scheduResponse.get().setTerm(calendar.getTime());
+					scheduResponse.get().setTerm(date.plusMinutes(1));
 					return repository.save(scheduResponse.get());
 				}
 			}else {

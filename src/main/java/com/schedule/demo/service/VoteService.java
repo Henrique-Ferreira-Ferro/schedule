@@ -1,5 +1,6 @@
 package com.schedule.demo.service;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -30,7 +31,7 @@ public class VoteService {
 	private UserRepository userRepository;
 
 	public VoteEntity createVote(VoteEntity voto) {
-		Date date = new Date();
+		LocalDateTime date = LocalDateTime.now();
 
 		// Buscando a pauta que o cara votou :D
 		Optional<ScheduleEntity> shedu = scheduRepository.findById(voto.getIdSchedule());
@@ -43,7 +44,7 @@ public class VoteService {
 			if (vote == null) {
 
 				// se a data atual, for anterior do prazo, votação em andamento
-				if (date.before(shedu.get().getTerm())) {
+				if (date.isBefore(shedu.get().getTerm())) {
 					return voteRepository.save(voto);
 
 				}
@@ -66,13 +67,13 @@ public class VoteService {
 
 	public VotingResultDTO resultVotacao(Long idSchedule) {
 
-		Date date = new Date();
+		LocalDateTime date = LocalDateTime.now();
 
 		Optional<ScheduleEntity> shedu = scheduRepository.findById(idSchedule);
 
 		List<VoteEntity> voteList = voteRepository.findByIdSchedule(idSchedule);
 
-		if (date.before(shedu.get().getTerm())) {
+		if (date.isBefore(shedu.get().getTerm())) {
 			throw new ForbiddenException("Votação em andamento!");
 		}
 
