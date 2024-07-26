@@ -62,17 +62,70 @@ Para realizar o teste e uso da aplicação se faz necessario uma tecnologia que 
 
 **Nota:** O testes foram realizados no Postman, mas não significa que não é possivel de ser feito em um navegador, entretanto não será abordado nesse guia, assim espera-se que o usuario final tenha ciência disso e realize a instalação da ferramenta no site oficial clicando [aqui](https://www.postman.com/downloads/) para acessar à página do postman.
 
-## Cliente Cadastro
+## Requisições referentes ao Usuario
 
-Funcionalidade para listar todos os usuarios:
-
-` http://localhost:8080/user `
+- Requisição para listar todos os usuarios:
 
 
+![image](https://github.com/user-attachments/assets/f2143a63-1913-4e81-9708-d8518c548749)
 
 
+- Requisição para encontrar usuario por ID
+
+![image](https://github.com/user-attachments/assets/e61fa01b-7805-4416-a272-87efb238ae1c)
+
+- Requisição para criar um usuario
+
+![image](https://github.com/user-attachments/assets/333c56ca-3233-4f54-9b09-323ce4ef9837)
+
+- Requisição para deletar um usuario por ID
+
+![image](https://github.com/user-attachments/assets/e61b70d1-6ffb-4f32-b5f1-b0fac7653bc3)
+
+- Requisição para atualizar um usuario por ID
+
+![image](https://github.com/user-attachments/assets/ea5c269a-a19a-4552-9dc2-8fb3715828be)
+
+## Requisições referentes a Pauta (shedule)
+
+- Requisição para criar uma pauta
+
+![image](https://github.com/user-attachments/assets/354df718-6ebd-4a7d-af6c-a29fcf40afdb)
+
+- Requisição para pegar uma pauta por ID
+
+![image](https://github.com/user-attachments/assets/e63d8324-98fc-411b-a4db-6f3ca8fab839)
+
+- Requisição para criar uma sessão com o ID da pauta
+
+![image](https://github.com/user-attachments/assets/11968150-68d7-4c9b-90bd-3b9d9eb529f6)
+
+## Requisições referentes ao Voto
+
+- Realizar um Voto
+
+![image](https://github.com/user-attachments/assets/5a6fdb82-aff1-478d-a8bc-7f0c63b2a033)
+
+- Encontrar voto por ID
+
+![image](https://github.com/user-attachments/assets/2c95d3e4-71e1-4086-bbf1-4da55a07f3a0)
+
+- Pesquisar por resultado da votação
+
+![image](https://github.com/user-attachments/assets/7175b17e-8086-44d6-a33a-3d676cd353b7)
+
+![image](https://github.com/user-attachments/assets/1c395932-1e73-436c-b962-553b89f84baf)
 
 
+### Documentação com swagger
+
+Toda a API foi documentada com o Swagger. Após iniciar a aplicação acesse a seguinte url:
+
+http://localhost:8080/swagger-ui/index.html
+
+Para a visualização de todos os endpoints 
+
+![image](https://github.com/user-attachments/assets/794282e5-77fa-4d3d-bfa2-be68cae0c3dc)
 
 
 
