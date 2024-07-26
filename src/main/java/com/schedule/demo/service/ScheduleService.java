@@ -1,5 +1,9 @@
 package com.schedule.demo.service;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Optional;
 
 import org.hibernate.ObjectNotFoundException;
@@ -9,6 +13,8 @@ import org.springframework.stereotype.Service;
 import com.schedule.demo.entity.ScheduleEntity;
 import com.schedule.demo.exceptions.BadRequestException;
 import com.schedule.demo.repository.ScheduleRepository;
+
+import jakarta.transaction.Transactional;
 
 @Service
 public class ScheduleService {
@@ -34,6 +40,28 @@ public class ScheduleService {
 		
 	}
 	
+	@Transactional
+	public ScheduleEntity insertSession(ScheduleEntity schedule) {
+		
+		var scheduResponse = repository.findById(schedule.getId());
+		
+		LocalDateTime date = LocalDateTime.now();
+		
+		if(scheduResponse.isPresent()) {
+			if(scheduResponse.get().getTerm() == null) {
+				if(schedule.getTerm() != null) {
+					scheduResponse.get().setTerm(schedule.getTerm());
+					return repository.saveAndFlush(scheduResponse.get());
+				}else {
+					scheduResponse.get().setTerm(date.plusMinutes(1));
+					return repository.save(scheduResponse.get());
+				}
+			}else {
+				throw new BadRequestException("A pauta está fechada");
+			}
+		}
+		throw new ObjectNotFoundException(schedule.getId(), schedule.getClass().getName());
+	}
 	
 	
 }

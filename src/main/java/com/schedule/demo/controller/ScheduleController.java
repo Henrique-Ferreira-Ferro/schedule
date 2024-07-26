@@ -52,5 +52,14 @@ public class ScheduleController {
 		return service.findScheduleById(id);
 	}
 	
+	// Criar sessaao para a pauta :v
+	
+	
+	@PostMapping("/session")
+	public ScheduleEntity insertSession(@RequestBody ScheduleEntity schedu){
+		return service.insertSession(schedu);
+	}
+	
+	
 	
 }
